@@ -2,26 +2,187 @@
 
 body {
   margin: 0;
-  background-color: black;
+  background: black;
   color: white;
   font-family: 'Bebas Neue', sans-serif;
+  overflow: hidden;
 }
 
 .container {
   height: 100vh;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 100px;
-  background: linear-gradient(to right, #000000, #330000);
-  position: relative;
-  overflow: hidden;
+  padding-left: 90px;
+  background: black;
 }
 
-h1 {
-  font-size: 5rem;
-  color: red;
-  transform: rotate(-3deg);
+.station-scene {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #111 0%, #000 100%);
+  overflow: hidden;
+  z-index: 0;
+  animation: scene-drift 8s ease-in-out infinite;
+}
+
+.back-wall {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to right,
+    #111 0px,
+    #111 140px,
+    #1c1c1c 140px,
+    #1c1c1c 280px
+  );
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
+.far-tunnel {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border: 10px solid #222;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) perspective(800px) rotateX(70deg);
+  opacity: 0.3;
+}
+
+.ceiling-lights {
+  position: absolute;
+  inset: 0;
+}
+
+.ceiling-lights::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: -10%;
+  width: 120%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 120px,
+    white 120px,
+    white 180px
+  );
+  transform: perspective(800px) rotateX(70deg);
+  opacity: 0.8;
+}
+
+.station-scene::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 300px;
+  bottom: -100px;
+  left: -50%;
+  background: repeating-linear-gradient(
+    to right,
+    #111 0px,
+    #111 120px,
+    #1f1f1f 120px,
+    #1f1f1f 240px
+  );
+  transform: perspective(700px) rotateX(75deg);
+}
+
+.station-scene::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  bottom: 170px;
+  background: red;
+  box-shadow: 0 50px 0 red, 0 -50px 0 red;
+  opacity: 0.8;
+}
+
+.train {
+  position: absolute;
+  width: 900px;
+  height: 180px;
+  background: linear-gradient(
+    to bottom,
+    #ddd 0%,
+    #999 15%,
+    #222 18%,
+    #ddd 22%,
+    #ddd 100%
+  );
+  border-top: 10px solid red;
+  bottom: 180px;
+  opacity: 0.85;
+  box-shadow: 0 0 40px rgba(255, 0, 0, 0.2);
+}
+
+.train::before {
+  content: "";
+  position: absolute;
+  inset: 20px;
+  background: repeating-linear-gradient(
+    to right,
+    #111 0px,
+    #111 40px,
+    #ddd 40px,
+    #ddd 90px
+  );
+}
+
+.train-left {
+  left: -1000px;
+  animation: train-left 10s linear infinite;
+}
+
+.train-right {
+  right: -1000px;
+  animation: train-right 12s linear infinite;
+}
+
+.character {
+  position: absolute;
+  width: 90px;
+  height: 240px;
+  background: red;
+  bottom: 70px;
+  filter: drop-shadow(0 0 10px red);
+  clip-path: polygon(
+    45% 0%,
+    60% 0%,
+    70% 18%,
+    65% 40%,
+    80% 100%,
+    60% 100%,
+    50% 65%,
+    40% 100%,
+    20% 100%,
+    35% 40%,
+    30% 18%
+  );
+  animation: idle 3s ease-in-out infinite;
+}
+
+.char-one {
+  right: 420px;
+  transform: scale(1);
+}
+
+.char-two {
+  right: 240px;
+  transform: scale(0.85);
+  animation-delay: 0.5s;
+}
+
+.char-three {
+  right: 90px;
+  transform: scale(1.15);
+  animation-delay: 1s;
 }
 
 .title-plate {
@@ -29,23 +190,33 @@ h1 {
   color: black;
   width: fit-content;
   padding: 0 30px;
-  transform: rotate(-3deg) skew(-10deg);
+  transform: rotate(-4deg) skew(-12deg);
   position: relative;
-  z-index: 2;
-  box-shadow: 10px 10px 0 red;
+  z-index: 3;
+  box-shadow: 12px 12px 0 red;
 }
 
 .title-plate h1 {
-  color: black;
   margin: 0;
+  color: black;
+  font-size: 5rem;
   transform: none;
+}
+
+.subtitle {
+  position: relative;
+  z-index: 3;
+  font-size: 1.4rem;
+  margin-top: 10px;
+  letter-spacing: 2px;
 }
 
 .menu {
   position: relative;
-  width: 400px;
+  width: 450px;
   height: 350px;
-  margin-top: 40px;
+  margin-top: 50px;
+  z-index: 3;
 }
 
 .menu a:nth-child(1) {
@@ -57,47 +228,43 @@ h1 {
 .menu a:nth-child(2) {
   position: absolute;
   top: 70px;
-  left: 80px;
+  left: 90px;
 }
 
 .menu a:nth-child(3) {
   position: absolute;
-  top: 140px;
-  left: 30px;
+  top: 145px;
+  left: 20px;
 }
 
 .menu a:nth-child(4) {
   position: absolute;
-  top: 210px;
-  left: 120px;
+  top: 220px;
+  left: 130px;
 }
 
 .menu-button {
-  width: 250px;
-  padding: 15px;
-  font-size: 1.5rem;
-  background-color: red;
-  border: none;
+  width: 280px;
+  padding: 16px;
+  font-size: 1.7rem;
+  background: black;
+  border: 3px solid white;
   color: white;
-  transform: skew(-15deg);
+  transform: skew(-18deg);
   cursor: pointer;
   transition: 0.2s;
+  text-align: left;
+  box-shadow: 8px 8px 0 red;
 }
 
 .menu-button:hover {
-  background-color: white;
-  color: red;
-  transform: skew(-15deg) scale(1.05);
-}
-
-.subtitle {
-  font-size: 1.5rem;
-  margin-top: -20px;
+  background: white;
+  color: black;
 }
 
 .page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #000, #3b0000);
+  background: linear-gradient(135deg, #000, #2a0000);
   color: white;
   padding: 80px;
   position: relative;
@@ -123,57 +290,6 @@ h1 {
   font-weight: bold;
   display: inline-block;
   transform: skew(-15deg);
-}
-
-.container h1,
-.subtitle,
-.menu {
-  position: relative;
-  z-index: 2;
-}
-
-.red-slash {
-  position: absolute;
-  background: red;
-  width: 500px;
-  height: 120px;
-  transform: rotate(-20deg);
-  z-index: 1;
-}
-
-.slash-one {
-  top: 80px;
-  right: -100px;
-}
-
-.slash-two {
-  bottom: 120px;
-  right: 150px;
-}
-
-.white-slash {
-  position: absolute;
-  background: white;
-  width: 400px;
-  height: 60px;
-  top: 220px;
-  right: -80px;
-  transform: rotate(-20deg);
-  z-index: 1;
-}
-
-.page::before,
-.container::before {
-  content: "";
-  position: absolute;
-  top: -20%;
-  left: -40%;
-  width: 40%;
-  height: 140%;
-  background: red;
-  transform: skew(-20deg);
-  animation: slash-in 0.6s ease-out forwards;
-  z-index: 5;
 }
 
 .projects-grid {
@@ -202,50 +318,57 @@ h1 {
   font-size: 1.1rem;
 }
 
-.floating-circle {
+.page::before,
+.container::before {
+  content: "";
   position: absolute;
-  border-radius: 50%;
-  opacity: 0.15;
-  animation: float 6s ease-in-out infinite;
-}
-
-.circle-one {
-  width: 300px;
-  height: 300px;
+  top: -20%;
+  left: -40%;
+  width: 40%;
+  height: 140%;
   background: red;
-  top: -100px;
-  right: -50px;
+  transform: skew(-20deg);
+  animation: slash-in 0.6s ease-out forwards;
+  z-index: 10;
 }
 
-.circle-two {
-  width: 200px;
-  height: 200px;
-  background: white;
-  bottom: 50px;
-  right: 300px;
-  animation-delay: 1s;
+@keyframes train-left {
+  from {
+    left: -1000px;
+  }
+
+  to {
+    left: 120%;
+  }
 }
 
-.circle-three {
-  width: 150px;
-  height: 150px;
-  background: red;
-  bottom: -50px;
-  left: 40%;
-  animation-delay: 2s;
+@keyframes train-right {
+  from {
+    right: -1000px;
+  }
+
+  to {
+    right: 120%;
+  }
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+@keyframes idle {
+  0%, 100% {
+    translate: 0 0;
   }
 
   50% {
-    transform: translateY(-20px);
+    translate: 0 -10px;
+  }
+}
+
+@keyframes scene-drift {
+  0%, 100% {
+    transform: scale(1);
   }
 
-  100% {
-    transform: translateY(0px);
+  50% {
+    transform: scale(1.02);
   }
 }
 
