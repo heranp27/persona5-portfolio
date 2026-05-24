@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 100px;
+  background: linear-gradient(to right, #000000, #330000);
+  position: relative;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 5rem;
+  color: red;
+  transform: rotate(-3deg);
+}
+
+.title-plate {
+  background: white;
+  color: black;
+  width: fit-content;
+  padding: 0 30px;
+  transform: rotate(-3deg) skew(-10deg);
+  position: relative;
+  z-index: 2;
+  box-shadow: 10px 10px 0 red;
+}
+
+.title-plate h1 {
+  color: black;
+  margin: 0;
+  transform: none;
+}
+
+.menu {
+  position: relative;
+  width: 400px;
+  height: 350px;
+  margin-top: 40px;
+}
+
+.menu a:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.menu a:nth-child(2) {
+  position: absolute;
+  top: 70px;
+  left: 80px;
+}
+
+.menu a:nth-child(3) {
+  position: absolute;
+  top: 140px;
+  left: 30px;
+}
+
+.menu a:nth-child(4) {
+  position: absolute;
+  top: 210px;
+  left: 120px;
+}
+
+.menu-button {
+  width: 250px;
+  padding: 15px;
+  font-size: 1.5rem;
+  background-color: red;
+  border: none;
+  color: white;
+  transform: skew(-15deg);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-button:hover {
+  background-color: white;
+  color: red;
+  transform: skew(-15deg) scale(1.05);
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-top: -20px;
+}
+
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000, #3b0000);
+  color: white;
+  padding: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page h1 {
+  font-size: 5rem;
+  color: red;
+  transform: rotate(-3deg);
+}
+
+.page p {
+  font-size: 1.5rem;
+  max-width: 700px;
+}
+
+.back-button {
+  color: white;
+  background: red;
+  padding: 12px 24px;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  transform: skew(-15deg);
+}
+
+.container h1,
+.subtitle,
+.menu {
+  position: relative;
+  z-index: 2;
+}
+
+.red-slash {
+  position: absolute;
+  background: red;
+  width: 500px;
+  height: 120px;
+  transform: rotate(-20deg);
+  z-index: 1;
+}
+
+.slash-one {
+  top: 80px;
+  right: -100px;
+}
+
+.slash-two {
+  bottom: 120px;
+  right: 150px;
+}
+
+.white-slash {
+  position: absolute;
+  background: white;
+  width: 400px;
+  height: 60px;
+  top: 220px;
+  right: -80px;
+  transform: rotate(-20deg);
+  z-index: 1;
+}
+
+.page::before,
+.container::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -40%;
+  width: 40%;
+  height: 140%;
+  background: red;
+  transform: skew(-20deg);
+  animation: slash-in 0.6s ease-out forwards;
+  z-index: 5;
+}
+
+.projects-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.project-card {
+  background: white;
+  color: black;
+  width: 280px;
+  min-height: 180px;
+  padding: 25px;
+  transform: skew(-5deg);
+  box-shadow: 10px 10px 0 red;
+}
+
+.project-card h2 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+.project-card p {
+  font-size: 1.1rem;
+}
+
+.floating-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.circle-one {
+  width: 300px;
+  height: 300px;
+  background: red;
+  top: -100px;
+  right: -50px;
+}
+
+.circle-two {
+  width: 200px;
+  height: 200px;
+  background: white;
+  bottom: 50px;
+  right: 300px;
+  animation-delay: 1s;
+}
+
+.circle-three {
+  width: 150px;
+  height: 150px;
+  background: red;
+  bottom: -50px;
+  left: 40%;
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes slash-in {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
