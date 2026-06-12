@@ -1,3 +1,7 @@
+# About
+This repo is in progressing, trying to move from my Persona 3 portfolio to a Persona 5 themed portfolio.
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
